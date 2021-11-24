@@ -1,5 +1,6 @@
 {
   "name": "storymaker",
+  "homepage": "http://otiscurtisdotcom.github.io/storymaker",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
