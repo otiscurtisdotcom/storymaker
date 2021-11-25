@@ -1,61 +1,66 @@
 import { useEffect, useState } from "react";
-import { BackStory } from "./BackStoryTypes";
+import { Plot, Story } from "./StoryTypes";
 import Row from "./Row";
 import { getStoryRows } from "./StoryRows";
 
-const FAKE_STORY: BackStory = {
+const FAKE_STORY: Story = {
   leadA: {
     name: 'Tom',
-    gender: {
-      pronoun1: 'he',
-      pronoun2: 'his'
-    }
+    place_of_work: 'bank',
+    pronoun1: 'he',
+    pronoun2: 'him',
+    pronoun3: 'his',
   },
   leadB: {
     name: 'Sue',
-    gender: {
-      pronoun1: 'she',
-      pronoun2: 'her'
-    }
+    place_of_work: 'ice cream shop',
+    pronoun1: 'she',
+    pronoun2: 'her',
+    pronoun3: 'her',
   },
   city: 'London',
-  town: 'Haywards Heath'
+  town: 'Haywards Heath',
+  plot: Math.floor(Math.random() * 3),
+  contest: 'mince pie eating contest',
+  old_helper: 'Bruce',
 }
 
 const Page = () => {
   const [rows, setRows] = useState<string[]>([]);
   const [currentRow, setCurrentRow] = useState(0);
-  const [backStory, setBackStory] = useState<BackStory>();
+  const [story, setStory] = useState<Story>();
 
   const nextRow = () => {
     const newRow = currentRow + 1;
     setCurrentRow(newRow);
+    window.scrollTo({top: document.body.clientHeight});
   };
 
   // ON APP INIT
   useEffect(() => {
-    const starterBackStory: BackStory = FAKE_STORY;
-    setBackStory(starterBackStory);
+    const starterStory: Story = FAKE_STORY;
+    setStory(starterStory);
   }, []);
 
   // ON BACKSTORY LOAD
   useEffect(() => {
-    if (backStory) {
-      setRows(getStoryRows(backStory!));
+    if (story) {
+      setRows(getStoryRows(story!));
     }
-  }, [backStory]);
+  }, [story]);
 
   return (
     <div>
-      {rows.map((text, index) => {
-        if (index <= currentRow) {
-          return <Row key={index}
-                      text={text}
-                      nextRow={nextRow}
-                      isLastRow={index === currentRow}
-                 />
-        }
-      })}
+      <div>
+        {rows.map((text, index) => {
+          if (index <= currentRow) {
+            return <Row key={index}
+                        text={text}
+                  />
+          }
+        })}
+      </div>
+      <button onClick={nextRow}>Next</button>
     </div>
   );
 }
