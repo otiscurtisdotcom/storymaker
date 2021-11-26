@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Story } from "./StoryTypes";
 import Row from "./Row";
 import getStoryRows from "./StoryRows";
 import useSetRandomStory from "./useSetRandomStory";

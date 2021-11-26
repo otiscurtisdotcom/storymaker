@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import getRandomMeetCute from "./getRandomMeetCute";
 import { Character, Story } from "./StoryTypes";
 
 interface DataMuseData {
@@ -24,7 +25,10 @@ const useSetRandomStory = () => {
   const [city, setCity] = useState('');
   const [town, setTown] = useState('');
   const [shop, setShop] = useState('');
+  const [luxury, setLuxury] = useState('');
   const [oldHelper, setOldHelper] = useState('');
+  const [accident, setAccident] = useState('');
+  const [heartWarmer, setHeartWarmer] = useState('');
   
   const fetchData = async (url: string) => {
     const res = await fetch(url);
@@ -52,9 +56,15 @@ const useSetRandomStory = () => {
 
   useEffect(() => {
     if (shop) {
-      getCity();
+      getLuxury();
     }
   }, [shop]);
+
+  useEffect(() => {
+    if (luxury) {
+      getCity();
+    }
+  }, [luxury]);
 
   useEffect(() => {
     if (city) {
@@ -69,7 +79,19 @@ const useSetRandomStory = () => {
   }, [town]);
 
   useEffect(() => {
-    if (leadA && leadB && town && city && contest && oldHelper) {
+    if (oldHelper) {
+      getAccident();
+    }
+  }, [oldHelper]);
+
+  useEffect(() => {
+    if (accident) {
+      getHeartWarmer();
+    }
+  }, [accident])
+
+  useEffect(() => {
+    if (leadA && leadB && town && city && contest && oldHelper && accident && heartWarmer) {
       const randomStory: Story = {
         leadA,
         leadB,
@@ -78,11 +100,15 @@ const useSetRandomStory = () => {
         contest,
         oldHelper,
         shop,
-        plot: Math.floor(Math.random() * 3),
+        luxury,
+        accident,
+        heartWarmer,
+        meetCute: getRandomMeetCute(leadA, leadB),
+        plot: getRandom([0,1,2]),
       };
       setStory(randomStory);
     }
-  }, [oldHelper]);
+  }, [heartWarmer]);
 
 
 
@@ -109,7 +135,7 @@ const useSetRandomStory = () => {
     .then((namesList: {names: string[]}) => {
 
       // Get Industry
-      fetchData(`https://api.datamuse.com/words?rel_bgb=industry&topics=work`)
+      fetchData(`https://api.datamuse.com/words?ml=finance&rel_bgb=industry`)
       .then((industryList: DataMuseData[]) => {
         const randomLeadA: Character = {
           name: getRandom(namesList.names).name,
@@ -143,6 +169,11 @@ const useSetRandomStory = () => {
     });
   }
 
+  const getLuxury = () => {
+    // Todo: move to JSON, add more.
+    setLuxury(getRandom(['Luxury flats', 'A helipad', 'A car park', 'A fast-food restaurant']));
+  }
+
   const getCity = () => {
     fetchData(`${process.env.PUBLIC_URL}/data/cities.json`)
     .then((result: {cities: string[]}) => {
@@ -167,6 +198,29 @@ const useSetRandomStory = () => {
     });
   }
 
+  const getAccident = () => {
+    fetchData(`https://api.datamuse.com/words?ml=transport`)
+    .then((result: DataMuseData[]) => {
+      const randomAccident = getRandom(getNouns(result)).word;
+      setAccident(`in a horrible ${randomAccident} accident`);
+    });
+  }
+
+  const getHeartWarmer = () => {
+    const synonym = getRandom(['crippled','hungry','poor','blind','fat','stupid','disabled'])
+    fetchData(`https://api.datamuse.com/words?rel_syn=${synonym}`)
+    .then((adjResult: DataMuseData[]) => {
+      const randomAdj = getRandom(adjResult).word;
+
+      const noun = getRandom(['orphans','animals'])
+      fetchData(`https://api.datamuse.com/words?ml=${noun}&topics=${noun}&max=${noun === 'orphans' ? '200' : '100'}`)
+      .then((nounResult: DataMuseData[]) => {
+        const plurals = nounResult.filter((def: DataMuseData) => def.word.slice(-1) === 's');
+        const randomNoun = getRandom(getNouns(plurals)).word;
+        setHeartWarmer(`${getRandom(['feeds','gives presents to'])} ${randomAdj} ${randomNoun}`);
+      });
+    });
+  }
 
   // RETURN
   return story;

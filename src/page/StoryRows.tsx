@@ -7,21 +7,21 @@ const getStoryRows = (story: Story): string[] => {
     ////////
 
     `Meet ${story.leadA.name}. ${capitalize(story.leadA.pronoun1)}'s a high-flyer in the ${story.leadA.industry} industry in ${story.city}.`,
-    `${capitalize(story.leadA.pronoun1)} works really long hours to make the big bucks.`,
+    `${capitalize(story.leadA.pronoun1)} works really long hours to make the big bucks, has no time for a relationship.`,
     `This year, in early December, ${story.leadA.pronoun1} needs to return to ${story.leadA.pronoun3} small home-town of ${story.town},`,
     `${getAct1(story).inciting_incident}.`,
     `...`,
 
     `${story.leadB.name} never left ${story.town},`,
-    `after ${story.leadB.pronoun1} inherited the ${story.shop} from ${story.leadB.pronoun3} parents, who tragically died in a helicopter accident.`,
+    `after ${story.leadB.pronoun1} inherited the ${story.shop} from ${story.leadB.pronoun3} parents, who tragically died ${story.accident}.`,
     `Christmas has always been special for ${story.leadB.name}, because it reminds ${story.leadB.pronoun2} of them.`,
     `The ${story.shop} is not doing well financially,`,
     `${story.leadB.name} explains this to ${story.leadB.pronoun3} only employee, ${story.oldHelper}, an old friend of ${story.leadB.pronoun3} parents.`,
     `...`,
 
     `${story.leadA.name} arrives back in ${story.town} and is instantly shocked at how friendly everyone is compared to ${story.city}.`,
-    `In ${story.leadA.pronoun3} first night in town, ${getAct1(story).meet_cute},`,
-    `and they get in a big argument and call each other names.`,
+    `In ${story.leadA.pronoun3} first night in town, ${story.meetCute}`,
+    `They get in a big argument, exchange insults and ${story.leadB.name} calls ${story.leadA.name} rude`,
     `...`,
 
     ////////
@@ -33,7 +33,7 @@ const getStoryRows = (story: Story): string[] => {
     ...getAct2(story).second_interaction,
     `...`,
 
-    `That evening, despite being low on funds, ${story.leadB.name} ${getAct2(story).heart_warmer} at the ${story.shop}.`,
+    `That evening, despite being low on funds, ${story.leadB.name} ${story.heartWarmer} at the ${story.shop}.`,
     `Everyone in ${story.town} attends, including ${story.leadA.name}, and the place is filled with Christmas spirit.`,
     `...`,
 
@@ -68,32 +68,24 @@ const capitalize = (word: string): string => {
 }
 
 const getAct1 = (story: Story): Act1 => {
-  // TODO Randomise
-  const meet_cute = `${story.leadA.name} accidentally kicks ${story.leadB.name}'s dog`;
-
   if (story.plot === Plot.SAVE_THE_BUSINESS) {
     return {
       inciting_incident: `to save the local ${story.shop}`,
-      meet_cute,
     };
   } else if (story.plot === Plot.DESTROY_THE_BUSINESS) {
     return {
       inciting_incident: `to demolish the local ${story.shop}`,
-      meet_cute,
     };
   } else {
     // (ENTER THE CONTEST)
     return {
       inciting_incident: `to enter the ${story.shop}'s annual ${story.contest}`,
-      meet_cute,
     };
   }
 }
 
 const getAct2 = (story: Story): Act2 => {
   // TODO Randomise
-  const heart_warmer = `gives out presents to blind children`;
-
   if (story.plot === Plot.SAVE_THE_BUSINESS) {
     return {
       second_interaction: [
@@ -101,7 +93,6 @@ const getAct2 = (story: Story): Act2 => {
         `and wanted to see if ${story.leadA.pronoun1} could help save it,`,
         `because ${story.leadA.pronoun1} always used to love it as a child`,
       ],
-      heart_warmer,
       start_drive: [
         `${story.leadA.name} returns to ${story.city},`,
         `to speak to ${story.leadA.pronoun3} boss at the ${story.leadA.industry} firm.`,
@@ -118,10 +109,9 @@ const getAct2 = (story: Story): Act2 => {
     return {
       second_interaction: [
         `Because ${story.leadA.pronoun3} ${story.leadA.industry} company is considering buying out the ${story.shop} when it goes under,`,
-        `and turn it into luxury housing,`,
+        `and turn it into ${story.luxury}`,
         `and ${story.leadA.pronoun1} is here to see if it's a good investment.`,
       ],
-      heart_warmer,
       start_drive: [
         `${story.leadA.name} returns to ${story.city},`,
         `to speak to ${story.leadA.pronoun3} boss at the ${story.leadA.industry} firm.`,
@@ -143,7 +133,6 @@ const getAct2 = (story: Story): Act2 => {
         `${story.leadB.name} explains that there won't be a ${story.contest}, because the ${story.shop} can't afford to put it on,`,
         `and anyway, people just don't care about Christmas like they used to.`,
       ],
-      heart_warmer,
       start_drive: [
         `${story.leadA.name} convinces ${story.leadB.name} they can raise the funds they need,`,
         `by having a special Christmas-themed sale at the ${story.shop},`,

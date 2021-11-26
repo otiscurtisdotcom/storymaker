@@ -3,10 +3,14 @@ export interface Story {
   leadB: Character;
   town: string;
   city: string;
-  plot: Plot;
   shop: string;
+  luxury: string;
   contest: string;
   oldHelper: string;
+  meetCute: string;
+  accident: string;
+  heartWarmer: string;
+  plot: Plot;
 }
 
 export interface Character {
@@ -19,18 +23,16 @@ export interface Character {
 
 export enum Plot {
   DESTROY_THE_BUSINESS,
-  SAVE_THE_BUSINESS,
-  ENTER_THE_CONTEST
+  ENTER_THE_CONTEST,
+  SAVE_THE_BUSINESS
 }
 
 export interface Act1 {
   inciting_incident: string;
-  meet_cute: string;
 }
 
 export interface Act2 {
   second_interaction: string[];
-  heart_warmer: string;
   start_drive: string[];
   continue_drive: string[];
   low_point: string[];
