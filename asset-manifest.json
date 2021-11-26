@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/storymaker/static/css/main.3441feb2.chunk.css",
-    "main.js": "/storymaker/static/js/main.e2f3e637.chunk.js",
-    "main.js.map": "/storymaker/static/js/main.e2f3e637.chunk.js.map",
+    "main.js": "/storymaker/static/js/main.6ee273b1.chunk.js",
+    "main.js.map": "/storymaker/static/js/main.6ee273b1.chunk.js.map",
     "runtime-main.js": "/storymaker/static/js/runtime-main.d07d0147.js",
     "runtime-main.js.map": "/storymaker/static/js/runtime-main.d07d0147.js.map",
-    "static/js/2.2362959a.chunk.js": "/storymaker/static/js/2.2362959a.chunk.js",
-    "static/js/2.2362959a.chunk.js.map": "/storymaker/static/js/2.2362959a.chunk.js.map",
+    "static/js/2.dcdabce6.chunk.js": "/storymaker/static/js/2.dcdabce6.chunk.js",
+    "static/js/2.dcdabce6.chunk.js.map": "/storymaker/static/js/2.dcdabce6.chunk.js.map",
     "index.html": "/storymaker/index.html",
     "static/css/main.3441feb2.chunk.css.map": "/storymaker/static/css/main.3441feb2.chunk.css.map",
-    "static/js/2.2362959a.chunk.js.LICENSE.txt": "/storymaker/static/js/2.2362959a.chunk.js.LICENSE.txt"
+    "static/js/2.dcdabce6.chunk.js.LICENSE.txt": "/storymaker/static/js/2.dcdabce6.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d07d0147.js",
-    "static/js/2.2362959a.chunk.js",
+    "static/js/2.dcdabce6.chunk.js",
     "static/css/main.3441feb2.chunk.css",
-    "static/js/main.e2f3e637.chunk.js"
+    "static/js/main.6ee273b1.chunk.js"
   ]
 }
