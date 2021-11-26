@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/storymaker/static/css/main.3441feb2.chunk.css",
-    "main.js": "/storymaker/static/js/main.6ee273b1.chunk.js",
-    "main.js.map": "/storymaker/static/js/main.6ee273b1.chunk.js.map",
+    "main.js": "/storymaker/static/js/main.56c81bf0.chunk.js",
+    "main.js.map": "/storymaker/static/js/main.56c81bf0.chunk.js.map",
     "runtime-main.js": "/storymaker/static/js/runtime-main.d07d0147.js",
     "runtime-main.js.map": "/storymaker/static/js/runtime-main.d07d0147.js.map",
     "static/js/2.dcdabce6.chunk.js": "/storymaker/static/js/2.dcdabce6.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.d07d0147.js",
     "static/js/2.dcdabce6.chunk.js",
     "static/css/main.3441feb2.chunk.css",
-    "static/js/main.6ee273b1.chunk.js"
+    "static/js/main.56c81bf0.chunk.js"
   ]
 }
