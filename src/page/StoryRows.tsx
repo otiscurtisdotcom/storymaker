@@ -1,38 +1,39 @@
 import { Act1, Act2, Act3, Plot, Story } from "./StoryTypes";
 
-export const getStoryRows = (story: Story): string[] => {
+const getStoryRows = (story: Story): string[] => {
   return [
     ////////
     `- Act I -`,
     ////////
 
-    `Meet ${story.leadA.name}. ${capitalize(story.leadA.pronoun1)}'s a high-flyer at the big ${story.leadA.place_of_work} in ${story.city}.`,
+    `Meet ${story.leadA.name}. ${capitalize(story.leadA.pronoun1)}'s a high-flyer in the ${story.leadA.industry} industry in ${story.city}.`,
     `${capitalize(story.leadA.pronoun1)} works really long hours to make the big bucks.`,
     `This year, in early December, ${story.leadA.pronoun1} needs to return to ${story.leadA.pronoun3} small home-town of ${story.town},`,
     `${getAct1(story).inciting_incident}.`,
     `...`,
 
     `${story.leadB.name} never left ${story.town},`,
-    `after ${story.leadB.pronoun1} inherited the ${story.leadB.place_of_work} from ${story.leadB.pronoun3} parents, who tragically died in a helicopter accident.`,
-    `Christmas has always been special for ${story.leadB.name}, because it reminds ${story.leadB.pronoun3} of them.`,
-    `The ${story.leadB.place_of_work} is not doing well financially,`,
-    `${story.leadB.name} explains this to ${story.leadB.pronoun3} only employee, ${story.old_helper}, an old friend of ${story.leadB.pronoun3} parents.`,
+    `after ${story.leadB.pronoun1} inherited the ${story.shop} from ${story.leadB.pronoun3} parents, who tragically died in a helicopter accident.`,
+    `Christmas has always been special for ${story.leadB.name}, because it reminds ${story.leadB.pronoun2} of them.`,
+    `The ${story.shop} is not doing well financially,`,
+    `${story.leadB.name} explains this to ${story.leadB.pronoun3} only employee, ${story.oldHelper}, an old friend of ${story.leadB.pronoun3} parents.`,
     `...`,
 
     `${story.leadA.name} arrives back in ${story.town} and is instantly shocked at how friendly everyone is compared to ${story.city}.`,
-    `In ${story.leadA.pronoun3} first night in town, ${getAct1(story).meet_cute}`,
+    `In ${story.leadA.pronoun3} first night in town, ${getAct1(story).meet_cute},`,
+    `and they get in a big argument and call each other names.`,
     `...`,
 
     ////////
     `- Act II -`,
     ////////
 
-    `The following morning, ${story.leadA.name} arrives at the ${story.leadB.place_of_work} and ${story.leadB.name} is surprised and angry.`,
+    `The following morning, ${story.leadA.name} arrives at the ${story.shop} and ${story.leadB.name} is surprised and angry.`,
     `${story.leadA.name} explains why ${story.leadA.pronoun1} is here:`,
     ...getAct2(story).second_interaction,
     `...`,
 
-    `That evening, despite being low on funds, ${story.leadB.name} ${getAct2(story).heart_warmer} at the ${story.leadB.place_of_work}.`,
+    `That evening, despite being low on funds, ${story.leadB.name} ${getAct2(story).heart_warmer} at the ${story.shop}.`,
     `Everyone in ${story.town} attends, including ${story.leadA.name}, and the place is filled with Christmas spirit.`,
     `...`,
 
@@ -49,6 +50,10 @@ export const getStoryRows = (story: Story): string[] => {
     `- Act III -`,
     ////////
 
+    `${story.oldHelper} convinces ${story.leadB.name} and ${story.leadA.name} that they should ${getAct3(story).setup}`,
+    `it's what ${story.leadB.pronoun3} parents would have wanted.`,
+    `...`,
+
     ...getAct3(story).final_push,
     `...`,
 
@@ -64,22 +69,22 @@ const capitalize = (word: string): string => {
 
 const getAct1 = (story: Story): Act1 => {
   // TODO Randomise
-  const meet_cute = `${story.leadA.name} accidentally kicks ${story.leadB.name}'s dog, and they get in a big arguement and call each other names.`;
+  const meet_cute = `${story.leadA.name} accidentally kicks ${story.leadB.name}'s dog`;
 
   if (story.plot === Plot.SAVE_THE_BUSINESS) {
     return {
-      inciting_incident: `to save the local ${story.leadB.place_of_work}`,
+      inciting_incident: `to save the local ${story.shop}`,
       meet_cute,
     };
   } else if (story.plot === Plot.DESTROY_THE_BUSINESS) {
     return {
-      inciting_incident: `to demolish the local ${story.leadB.place_of_work}`,
+      inciting_incident: `to demolish the local ${story.shop}`,
       meet_cute,
     };
   } else {
     // (ENTER THE CONTEST)
     return {
-      inciting_incident: `to enter the ${story.leadB.place_of_work}'s annual ${story.contest}`,
+      inciting_incident: `to enter the ${story.shop}'s annual ${story.contest}`,
       meet_cute,
     };
   }
@@ -92,17 +97,17 @@ const getAct2 = (story: Story): Act2 => {
   if (story.plot === Plot.SAVE_THE_BUSINESS) {
     return {
       second_interaction: [
-        `Because ${story.leadA.pronoun1} heard the ${story.leadB.place_of_work} was going out of business,`,
+        `Because ${story.leadA.pronoun1} heard the ${story.shop} was going out of business,`,
         `and wanted to see if ${story.leadA.pronoun1} could help save it,`,
         `because ${story.leadA.pronoun1} always used to love it as a child`,
       ],
       heart_warmer,
       start_drive: [
         `${story.leadA.name} returns to ${story.city},`,
-        `to speak to ${story.leadA.pronoun3} boss at the ${story.leadA.place_of_work}.`,
+        `to speak to ${story.leadA.pronoun3} boss at the ${story.leadA.industry} firm.`,
       ],
       continue_drive: [
-        `Initially ${story.leadA.name} manages to convince the boss of the charms of ${story.town} and it's ${story.leadB.place_of_work}.`,
+        `Initially ${story.leadA.name} manages to convince the boss of the charms of ${story.town} and it's ${story.shop}.`,
         `But they refuse to give the money needed to save it`,
       ],
       low_point: [
@@ -112,18 +117,18 @@ const getAct2 = (story: Story): Act2 => {
   } else if (story.plot === Plot.DESTROY_THE_BUSINESS) {
     return {
       second_interaction: [
-        `Because ${story.leadA.pronoun3} ${story.leadA.place_of_work} is considering buying out the ${story.leadB.place_of_work} when it goes under,`,
+        `Because ${story.leadA.pronoun3} ${story.leadA.industry} company is considering buying out the ${story.shop} when it goes under,`,
         `and turn it into luxury housing,`,
         `and ${story.leadA.pronoun1} is here to see if it's a good investment.`,
       ],
       heart_warmer,
       start_drive: [
         `${story.leadA.name} returns to ${story.city},`,
-        `to speak to ${story.leadA.pronoun3} boss at the ${story.leadA.place_of_work}.`,
+        `to speak to ${story.leadA.pronoun3} boss at the ${story.leadA.industry} firm.`,
       ],
       continue_drive: [
-        `${story.leadA.name} tries to convince the boss that buying the ${story.town} ${story.leadB.place_of_work} would be a bad investment.`,
-        `The boss disagrees, and says they will demolish the ${story.leadB.place_of_work} next week`,
+        `${story.leadA.name} tries to convince the boss that buying the ${story.town} ${story.shop} would be a bad investment.`,
+        `The boss disagrees, and says they will demolish the ${story.shop} next week`,
       ],
       low_point: [
         `${story.leadA.name} quits on the spot, and returns to ${story.town} empty handed.`
@@ -133,15 +138,15 @@ const getAct2 = (story: Story): Act2 => {
     // (ENTER THE CONTEST)
     return {
       second_interaction: [
-        `${capitalize(story.leadA.pronoun1)} wants to enter the ${story.leadB.place_of_work}'s ${story.contest},`,
+        `${capitalize(story.leadA.pronoun1)} wants to enter the ${story.shop}'s ${story.contest},`,
         `because it reminds ${story.leadA.pronoun2} of ${story.leadA.pronoun3} childhood.`,
-        `${story.leadB.name} explains that there won't be a ${story.contest}, because the ${story.leadB.place_of_work} can't afford to put it on,`,
+        `${story.leadB.name} explains that there won't be a ${story.contest}, because the ${story.shop} can't afford to put it on,`,
         `and anyway, people just don't care about Christmas like they used to.`,
       ],
       heart_warmer,
       start_drive: [
         `${story.leadA.name} convinces ${story.leadB.name} they can raise the funds they need,`,
-        `by having a special Christmas-themed sale at the ${story.leadB.place_of_work},`,
+        `by having a special Christmas-themed sale at the ${story.shop},`,
         `which will raise enough to save the business and hold the ${story.contest} once again.`
       ],
       continue_drive: [
@@ -158,27 +163,41 @@ const getAct2 = (story: Story): Act2 => {
 const getAct3 = (story: Story): Act3 => {
   if (story.plot === Plot.SAVE_THE_BUSINESS) {
     return {
+      setup: `Put on a talent show to save the ${story.shop},`,
       final_push: [
-        ``
+        `Everyone from ${story.town} attends the magical night,`,
+        `where the townspeople show off their quirky talents.`,
+        `Even the local cop, who plays the piano.`,
+        `At the end of the night, ${story.leadB.name} and ${story.leadA.name} have saved enough money to keep the ${story.shop} in business.`,
       ],
     };
   } else if (story.plot === Plot.DESTROY_THE_BUSINESS) {
     return {
+      setup: `protect the ${story.shop},`,
       final_push: [
-        ``
+        `As the bulldozers arrive,`,
+        `${story.leadB.name}, ${story.leadA.name} and the people of ${story.town} sing Christmas carols outside the ${story.shop},`,
+        `Even the local cop.`,
+        `${story.leadA.name}'s boss from the ${story.leadA.industry} company jumps down from one of the bulldozers smoking a cigar.`,
+        `Overwhelmed by the spirit of Christmas in the town,`,
+        `the demolition is called off,`,
+        `and they agree to give ${story.leadB.name} and ${story.leadA.name} the money they need to keep the ${story.shop} in business.`,
       ],
     };
   } else {
     // (ENTER THE CONTEST)
     return {
+      setup: `hold the ${story.contest} anyway,`,
       final_push: [
-        `${story.old_helper} convinces ${story.leadB.name} that they should hold the ${story.contest} anyway,`,
-        `it's what ${story.leadB.pronoun3} parents would have wanted.`,
         `The ${story.contest} goes ahead, and everyone in ${story.town} attends`,
         `Just as they are getting started, the police show up to call it off.`,
         `However, when they see the Christmas spirit of the whole town,`,
-        `they decide to let it go ahead anyway`,
+        `they decide to let it go ahead anyway.`,
+        `${story.leadA.name} wins the contest,`,
+        `but more importantly everyone has fun.`,
       ],
     };
   }
 }
+
+export default getStoryRows;

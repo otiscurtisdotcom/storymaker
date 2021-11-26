@@ -1,11 +1,12 @@
 export interface Story {
-  leadA: Character; // Slicker
-  leadB: Character; // Homespun local
-  town: string; // Where they come from
-  city: string; // Where the slicker moved
+  leadA: Character;
+  leadB: Character;
+  town: string;
+  city: string;
   plot: Plot;
-  contest: string; // For use in the contest plot
-  old_helper: string; // The old employee of the local business
+  shop: string;
+  contest: string;
+  oldHelper: string;
 }
 
 export interface Character {
@@ -13,7 +14,7 @@ export interface Character {
   pronoun1: string;
   pronoun2: string;
   pronoun3: string;
-  place_of_work: string;
+  industry?: string;
 }
 
 export enum Plot {
@@ -36,5 +37,6 @@ export interface Act2 {
 }
 
 export interface Act3 {
+  setup: string;
   final_push: string[];
 }
