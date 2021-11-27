@@ -21,7 +21,7 @@ const getStoryRows = (story: Story): string[] => {
 
     `${story.leadA.name} arrives back in ${story.town} and is instantly shocked at how friendly everyone is compared to ${story.city}.`,
     `In ${story.leadA.pronoun3} first night in town, ${story.meetCute}`,
-    `They get in a big argument, exchange insults and ${story.leadB.name} calls ${story.leadA.name} rude`,
+    `They get in a big argument, exchange insults and ${story.leadB.name} calls ${story.leadA.name} rude.`,
     `...`,
 
     ////////

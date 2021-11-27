@@ -11,7 +11,9 @@ const Page = () => {
   const nextRow = () => {
     const newRow = currentRow + 1;
     setCurrentRow(newRow);
-    window.scrollTo({top: document.body.clientHeight});
+    setTimeout(() => {
+      window.scrollTo({top: document.body.clientHeight, behavior: 'smooth'});
+    }, 100);
   };
 
   const randomStory = useSetRandomStory();

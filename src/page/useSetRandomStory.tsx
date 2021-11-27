@@ -171,7 +171,7 @@ const useSetRandomStory = () => {
 
   const getLuxury = () => {
     // Todo: move to JSON, add more.
-    setLuxury(getRandom(['Luxury flats', 'A helipad', 'A car park', 'A fast-food restaurant']));
+    setLuxury(getRandom(['luxury flats', 'a helipad', 'a car park', 'a fast-food restaurant']));
   }
 
   const getCity = () => {

@@ -1,6 +1,35 @@
+.page {
+  background-position: top;
+  width: 100%;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
+  max-width: 700px;
+  width: 90%;
+
+  .top,
+  .content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .top {
+    img {
+      width: 100%;
+    }
+  }
+
+  .content {
+    background-position: top center;
+    background-repeat: repeat-y;
+    background-size: 100%;
+    min-height: calc(100vh - 81px);
+    padding: 0 5% 30px;
+  }
 }
 
 header {
@@ -13,11 +42,24 @@ main {
 }
 
 main {
+  color: #222;
   margin-bottom: 100px;
 }
 
 button {
+  background: #222;
+  border: none;
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 14px;
   position: fixed;
-  right: 40px;
-  top: 40px;
+  right: 0;
+  top: 20px;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: #333;
+  }
 }
