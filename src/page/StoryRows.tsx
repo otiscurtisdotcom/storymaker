@@ -13,7 +13,7 @@ const getStoryRows = (story: Story): string[] => {
     `...`,
 
     `${story.leadB.name} never left ${story.town},`,
-    `after ${story.leadB.pronoun1} inherited the ${story.shop} from ${story.leadB.pronoun3} parents, who tragically died ${story.accident}.`,
+    `after ${story.leadB.pronoun1} inherited the ${story.shop} from ${story.leadB.pronoun3} parents, who died ${story.accident}.`,
     `Christmas has always been special for ${story.leadB.name}, because it reminds ${story.leadB.pronoun2} of them.`,
     `The ${story.shop} is not doing well financially,`,
     `${story.leadB.name} explains this to ${story.leadB.pronoun3} only employee, ${story.oldHelper}, an old friend of ${story.leadB.pronoun3} parents.`,
@@ -107,7 +107,7 @@ const getAct2 = (story: Story): Act2 => {
   } else if (story.plot === Plot.DESTROY_THE_BUSINESS) {
     return {
       second_interaction: [
-        `Because ${story.leadA.pronoun3} ${story.leadA.industry} company is considering buying out the ${story.shop} when it goes under,`,
+        `Because ${story.leadA.pronoun3} ${story.leadA.industry} company wants to buy out the ${story.shop} when it goes under,`,
         `and turn it into ${story.luxury}`,
         `and ${story.leadA.pronoun1} is here to see if it's a good investment.`,
       ],
