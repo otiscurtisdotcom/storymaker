@@ -7,7 +7,7 @@ const getStoryRows = (story: Story): string[] => {
     ////////
 
     `Meet ${story.leadA.name}. ${capitalize(story.leadA.pronoun1)}'s a high-flyer in the ${story.leadA.industry} industry in ${story.city}.`,
-    `${capitalize(story.leadA.pronoun1)} works really long hours to make the big bucks, has no time for a relationship.`,
+    `${capitalize(story.leadA.pronoun1)} works really long hours to make the big bucks, and so has no time for a relationship.`,
     `This year, in early December, ${story.leadA.pronoun1} needs to return to ${story.leadA.pronoun3} small home-town of ${story.town},`,
     `${getAct1(story).inciting_incident}.`,
     `...`,
@@ -21,7 +21,7 @@ const getStoryRows = (story: Story): string[] => {
 
     `${story.leadA.name} arrives back in ${story.town} and is instantly shocked at how friendly everyone is compared to ${story.city}.`,
     `In ${story.leadA.pronoun3} first night in town, ${story.meetCute}`,
-    `They get in a big argument, exchange insults and ${story.leadB.name} calls ${story.leadA.name} rude.`,
+    `They get in a big argument, exchange insults, and ${story.leadB.name} calls ${story.leadA.name} rude.`,
     `...`,
 
     ////////
@@ -85,7 +85,6 @@ const getAct1 = (story: Story): Act1 => {
 }
 
 const getAct2 = (story: Story): Act2 => {
-  // TODO Randomise
   if (story.plot === Plot.SAVE_THE_BUSINESS) {
     return {
       second_interaction: [
@@ -143,7 +142,7 @@ const getAct2 = (story: Story): Act2 => {
         `united by the spirit of Christmas, everyone is preparing for the ${story.contest}.`,
       ],
       low_point: [
-        `But the local cop shuts it down for not having the right permits`,
+        `But the grumpy local cop, ${story.cop}, shuts it down for not having the right permits.`,
       ],
     };
   }
@@ -152,11 +151,11 @@ const getAct2 = (story: Story): Act2 => {
 const getAct3 = (story: Story): Act3 => {
   if (story.plot === Plot.SAVE_THE_BUSINESS) {
     return {
-      setup: `Put on a talent show to save the ${story.shop},`,
+      setup: `put on a talent show to save the ${story.shop},`,
       final_push: [
         `Everyone from ${story.town} attends the magical night,`,
         `where the townspeople show off their quirky talents.`,
-        `Even the local cop, who plays the piano.`,
+        `Even the grumpy local cop, ${story.cop}, who plays the piano.`,
         `At the end of the night, ${story.leadB.name} and ${story.leadA.name} have saved enough money to keep the ${story.shop} in business.`,
       ],
     };
@@ -166,7 +165,7 @@ const getAct3 = (story: Story): Act3 => {
       final_push: [
         `As the bulldozers arrive,`,
         `${story.leadB.name}, ${story.leadA.name} and the people of ${story.town} sing Christmas carols outside the ${story.shop},`,
-        `Even the local cop.`,
+        `Even the grumpy local cop, ${story.cop}.`,
         `${story.leadA.name}'s boss from the ${story.leadA.industry} company jumps down from one of the bulldozers smoking a cigar.`,
         `Overwhelmed by the spirit of Christmas in the town,`,
         `the demolition is called off,`,
@@ -178,8 +177,8 @@ const getAct3 = (story: Story): Act3 => {
     return {
       setup: `hold the ${story.contest} anyway,`,
       final_push: [
-        `The ${story.contest} goes ahead, and everyone in ${story.town} attends`,
-        `Just as they are getting started, the police show up to call it off.`,
+        `The ${story.contest} goes ahead, and everyone in ${story.town} attends.`,
+        `Just as they are getting started, ${story.cop} and the other cops show up to call it off.`,
         `However, when they see the Christmas spirit of the whole town,`,
         `they decide to let it go ahead anyway.`,
         `${story.leadA.name} wins the contest,`,

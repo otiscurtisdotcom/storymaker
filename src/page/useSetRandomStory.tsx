@@ -13,10 +13,6 @@ const getRandom = (list: any[]): any => {
   return list[randomNumber];
 }
 
-const getNouns = (list: DataMuseData[]): DataMuseData[] => {
-  return list.filter((word) => word.tags?.length === 1 && word.tags[0] === 'n');
-}
-
 const useSetRandomStory = () => {
   const [story, setStory] = useState<Story|null>(null);
   const [contest, setContest] = useState('');
@@ -27,6 +23,7 @@ const useSetRandomStory = () => {
   const [shop, setShop] = useState('');
   const [luxury, setLuxury] = useState('');
   const [oldHelper, setOldHelper] = useState('');
+  const [cop, setCop] = useState('');
   const [accident, setAccident] = useState('');
   const [heartWarmer, setHeartWarmer] = useState('');
   
@@ -80,9 +77,15 @@ const useSetRandomStory = () => {
 
   useEffect(() => {
     if (oldHelper) {
-      getAccident();
+      getCop();
     }
   }, [oldHelper]);
+
+  useEffect(() => {
+    if (cop) {
+      getAccident();
+    }
+  }, [cop]);
 
   useEffect(() => {
     if (accident) {
@@ -99,6 +102,7 @@ const useSetRandomStory = () => {
         city,
         contest,
         oldHelper,
+        cop,
         shop,
         luxury,
         accident,
@@ -117,11 +121,10 @@ const useSetRandomStory = () => {
   // GET FUNCTIONS
   const getContestName = () => {
     const isFood = getRandom([1,2]) === 1;
-    const source = isFood ? 'ml=christmas+food' : 'ml=christmas+object';
 
-    fetchData(`https://api.datamuse.com/words?${source}`)
-    .then((results: DataMuseData[]) => {
-      const randomContest = getRandom(getNouns(results)).word;
+    fetchData(`${process.env.PUBLIC_URL}/data/${isFood ? 'food' : 'objects'}.json`)
+    .then((results: any) => {
+      const randomContest = getRandom(results.words).word;
       const randomVerb = isFood ? getRandom(['eating', 'cooking']) : getRandom(['making', 'throwing', 'sculpting']);
       setContest(`${randomContest} ${randomVerb} contest`);
     });
@@ -132,23 +135,23 @@ const useSetRandomStory = () => {
     
     // Lead A
     fetchData(`${process.env.PUBLIC_URL}/data/${isLeadAMale ? 'm' : 'f'}-names.json`)
-    .then((namesList: {names: string[]}) => {
+    .then((namesList: any) => {
 
       // Get Industry
-      fetchData(`https://api.datamuse.com/words?ml=finance&rel_bgb=industry`)
-      .then((industryList: DataMuseData[]) => {
+      fetchData(`${process.env.PUBLIC_URL}/data/industries.json`)
+      .then((industryList: any) => {
         const randomLeadA: Character = {
           name: getRandom(namesList.names).name,
           pronoun1: isLeadAMale ? 'he' : 'she',
           pronoun2: isLeadAMale ? 'him' : 'her',
           pronoun3: isLeadAMale ? 'his' : 'her',
-          industry: getRandom(industryList).word
+          industry: getRandom(industryList.words).word
         }
         setLeadA(randomLeadA);
   
         // Lead B
         fetchData(`${process.env.PUBLIC_URL}/data/${!isLeadAMale ? 'm' : 'f'}-names.json`)
-        .then((namesListB: {names: string[]}) => {
+        .then((namesListB: any) => {
           const randomLeadB: Character = {
             name: getRandom(namesListB.names).name,
             pronoun1: !isLeadAMale ? 'he' : 'she',
@@ -162,16 +165,19 @@ const useSetRandomStory = () => {
   }
 
   const getShop = () => {
-    fetchData(`https://api.datamuse.com/words?ml=christmas+object&rc=shop`)
-    .then((results: DataMuseData[]) => {
-      const randomShop = getRandom(getNouns(results)).word;
+    fetchData(`${process.env.PUBLIC_URL}/data/objects.json`)
+    .then((results: any) => {
+      const randomShop = getRandom(results.words).word;
       setShop(`${randomShop} shop`);
     });
   }
 
   const getLuxury = () => {
-    // Todo: move to JSON, add more.
-    setLuxury(getRandom(['luxury flats', 'a helipad', 'a car park', 'a fast-food restaurant']));
+    fetchData(`${process.env.PUBLIC_URL}/data/luxury.json`)
+    .then((results: any) => {
+      const randomLuxury = getRandom(results.words).word;
+      setLuxury(`${randomLuxury}`);
+    });
   }
 
   const getCity = () => {
@@ -198,25 +204,30 @@ const useSetRandomStory = () => {
     });
   }
 
+  const getCop = () => {
+    const isCopMale = getRandom([0,1]) === 0;
+    fetchData(`${process.env.PUBLIC_URL}/data/${isCopMale ? 'm' : 'f'}-names.json`)
+    .then((result: {names: string[]}) => {
+      setCop(getRandom(result.names).name);
+    });
+  }
+
   const getAccident = () => {
-    fetchData(`https://api.datamuse.com/words?ml=transport`)
-    .then((result: DataMuseData[]) => {
-      const randomAccident = getRandom(getNouns(result)).word;
-      setAccident(`in a horrible ${randomAccident} accident`);
+    fetchData(`${process.env.PUBLIC_URL}/data/transport.json`)
+    .then((result: any) => {
+      const randomAccident = getRandom(result.words).word;
+      setAccident(`in a tragic ${randomAccident} accident`);
     });
   }
 
   const getHeartWarmer = () => {
-    const synonym = getRandom(['crippled','hungry','poor','blind','fat','stupid','disabled'])
-    fetchData(`https://api.datamuse.com/words?rel_syn=${synonym}`)
-    .then((adjResult: DataMuseData[]) => {
-      const randomAdj = getRandom(adjResult).word;
+    fetchData(`${process.env.PUBLIC_URL}/data/heart-warmer-adj.json`)
+    .then((adjResult: any) => {
+      const randomAdj = getRandom(adjResult.words).word;
 
-      const noun = getRandom(['orphans','animals'])
-      fetchData(`https://api.datamuse.com/words?ml=${noun}&topics=${noun}&max=${noun === 'orphans' ? '200' : '100'}`)
-      .then((nounResult: DataMuseData[]) => {
-        const plurals = nounResult.filter((def: DataMuseData) => def.word.slice(-1) === 's');
-        const randomNoun = getRandom(getNouns(plurals)).word;
+      fetchData(`${process.env.PUBLIC_URL}/data/heart-warmer-nouns.json`)
+      .then((nounResult: any) => {
+        const randomNoun = getRandom(nounResult.words).word;
         setHeartWarmer(`${getRandom(['feeds','gives presents to'])} ${randomAdj} ${randomNoun}`);
       });
     });

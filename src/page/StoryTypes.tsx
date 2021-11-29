@@ -7,6 +7,7 @@ export interface Story {
   luxury: string;
   contest: string;
   oldHelper: string;
+  cop: string;
   meetCute: string;
   accident: string;
   heartWarmer: string;
