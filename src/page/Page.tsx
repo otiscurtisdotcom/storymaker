@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Bauble from "../side/Bauble";
 import Row from "./Row";
 import getStoryRows from "./StoryRows";
 import useSetRandomStory from "./useSetRandomStory";
@@ -6,7 +7,6 @@ import useSetRandomStory from "./useSetRandomStory";
 const Page = () => {
   const [rows, setRows] = useState<string[]>([]);
   const [currentRow, setCurrentRow] = useState(0);
-  // const [story, setStory] = useState<Story>();
 
   const nextRow = () => {
     const newRow = currentRow + 1;
@@ -17,11 +17,6 @@ const Page = () => {
   };
 
   const randomStory = useSetRandomStory();
-
-  // ON APP INIT
-  useEffect(() => {
-    console.log('INIT');
-  }, []);
 
   // ON BACKSTORY LOAD
   useEffect(() => {
@@ -42,6 +37,7 @@ const Page = () => {
         })}
       </div>
       <button onClick={nextRow}>Next</button>
+      <Bauble name={randomStory?.leadA.name}></Bauble>
     </div>
   );
 }
