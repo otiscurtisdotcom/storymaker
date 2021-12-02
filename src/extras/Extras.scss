@@ -1,0 +1,30 @@
+.sides {
+  height: 100%;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+canvas {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.bauble {
+  display: none;
+
+  @media screen and (min-width: 860px) {
+    display: block;
+    height: 300px;
+    left: calc(-9vw - 170px);
+    position: absolute;
+    top: calc(100vh - 250px);
+    width: 300px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    left: calc(-25vw);
+  }
+}

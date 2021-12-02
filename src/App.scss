@@ -10,7 +10,7 @@
   flex-direction: column;
   margin: 0 auto;
   max-width: 840px;
-  width: 100%;
+  width: calc(100% - 200px);
 
   .top,
   .content {
@@ -29,9 +29,13 @@
     background-position: top center;
     background-repeat: repeat-y;
     background-size: 100%;
-    min-height: calc(100vh - 81px);
+    min-height: calc(100vh - 78px);
     padding: 0 9% 30px;
   }
+}
+
+.page-wrapper {
+  position: relative;
 }
 
 header {

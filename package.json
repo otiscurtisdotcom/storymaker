@@ -6,6 +6,7 @@
   "dependencies": {
     "@inlet/react-pixi": "^6.6.5",
     "@pixi/filter-bulge-pinch": "^4.1.5",
+    "@pixi/filter-color-matrix": "^6.2.0",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",

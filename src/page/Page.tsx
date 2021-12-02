@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import Bauble from "../side/Bauble";
+import Bauble from "../extras/Bauble";
+import Extras from "../extras/Extras";
 import Row from "./Row";
 import getStoryRows from "./StoryRows";
 import useSetRandomStory from "./useSetRandomStory";
@@ -25,21 +26,24 @@ const Page = () => {
     }
   }, [randomStory]);
 
-  return (
-    <div>
-      <div>
-        {rows.map((text, index) => {
-          if (index <= currentRow) {
-            return <Row key={index}
-                        text={text}
-                  />
-          }
-        })}
+  if (randomStory) {
+    return (
+      <div className="page-wrapper">
+        <div>
+          {rows.map((text, index) => {
+            if (index <= currentRow) {
+              return <Row key={index}
+                          text={text} />
+            }
+          })}
+        </div>
+        <button onClick={nextRow}>Next</button>
+        <Extras story={randomStory} />
       </div>
-      <button onClick={nextRow}>Next</button>
-      <Bauble name={randomStory?.leadA.name}></Bauble>
-    </div>
-  );
+    )
+  } else {
+    return (<></>)
+  }
 }
 
 export default Page;
