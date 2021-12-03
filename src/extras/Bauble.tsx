@@ -47,8 +47,7 @@ const Bauble = (props: {
           matrix={{ enabled: true }} apply={ ({ matrix }) => matrix.hue(props.isLeadA ? hughA : hughB) }
           >
           <Sprite
-            image={`${process.env.PUBLIC_URL}/img/bauble2.png`}
-            scale={0.23}
+            image={`${process.env.PUBLIC_URL}/img/bauble.png`}
             anchor={0.5}
             x={width / 2}
             y={width / 2 - 30}

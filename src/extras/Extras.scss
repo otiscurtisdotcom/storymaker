@@ -23,22 +23,90 @@ canvas {
 
     &.lead-a {
       left: calc(-9vw - 170px);
-      top: calc(100vh - 200px);
+      top: 100vh;
     }
 
     &.lead-b {
       right: calc(-9vw - 170px);
-      top: calc(200vh - 200px);
+      top: 280vh;
     }
   }
 
   @media screen and (min-width: 1200px) {
     &.lead-a {
-      left: calc(-25vw);
+      left: -25vw;
     }
 
     &.lead-b {
-      right: calc(-25vw);
+      right: -25vw;
     }
+  }
+
+  @media screen and (min-height: 900px) {
+    &.lead-a {
+      top: 70vh;
+    }
+
+    &.lead-b {
+      top: 170vh;
+    }
+  }
+}
+
+.candycane,
+.hotchoc,
+.present1,
+.present2 {
+  display: none;
+
+  @media screen and (min-width: 860px) {
+    display: block;
+    position: absolute;
+  }
+}
+
+.candycane {
+  max-width: 700px;
+  right: -36vw;
+  top: -250px;
+  transform: rotate(15deg);
+  width: 60vw;
+
+  @media screen and (min-height: 900px) {
+    right: -30vw;
+  }
+}
+
+.hotchoc {
+  left: -42vw;
+  max-width: 600px;
+  top: 12vh;
+  transform: rotate(8deg);
+  width: 50vw;
+}
+
+.present1,
+.present2 {
+  max-width: 1200px;
+  width: 80vw;
+}
+
+.present1 {
+  left: -65vw;
+  top: 180vh;
+  transform: rotate(55deg);
+
+  @media screen and (min-height: 900px) {
+    top: 120vh;
+  }
+}
+
+.present2 {
+  right: -65vw;
+  top: 110vh;
+  transform: rotate(-55deg);
+
+  @media screen and (min-height: 900px) {
+    top: 60vh;
   }
 }

@@ -68,6 +68,7 @@ button {
   right: 0;
   top: 20px;
   transition: background-color 0.2s ease;
+  z-index: 2;
 
   &:hover {
     background: #333;
