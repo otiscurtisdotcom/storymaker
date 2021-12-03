@@ -2,6 +2,7 @@ import { Stage, Text, withFilters, Container, Sprite } from '@inlet/react-pixi'
 import { TextStyle } from '@pixi/text';
 import { BulgePinchFilter } from '@pixi/filter-bulge-pinch';
 import { ColorMatrixFilter } from '@pixi/filter-color-matrix';
+import { getRandom } from '../utils';
 
 const TextFilters = withFilters(Container, {
   bulge: BulgePinchFilter,
@@ -18,7 +19,7 @@ const bulgeConfig = {
 
 const rotate = `rotate(${Math.random() * 40 - 20}deg)`;
 const hughes = [0, 180, 230];
-const hugh = hughes[Math.floor(Math.random() * hughes.length)];
+const hugh = getRandom(hughes);
 
 const Bauble = (props: {
   name: string | undefined,

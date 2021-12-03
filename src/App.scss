@@ -31,6 +31,10 @@
     background-size: 100%;
     min-height: calc(100vh - 78px);
     padding: 0 9% 30px;
+
+    @media (max-width: 1070px) {
+      min-height: calc(100vh - 7vw);
+    }
   }
 }
 

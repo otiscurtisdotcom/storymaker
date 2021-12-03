@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Bauble from "../extras/Bauble";
 import Extras from "../extras/Extras";
 import Row from "./Row";
 import getStoryRows from "./StoryRows";
@@ -22,7 +21,8 @@ const Page = () => {
   // ON BACKSTORY LOAD
   useEffect(() => {
     if (randomStory) {
-      setRows(getStoryRows(randomStory));
+      const storyRows = getStoryRows(randomStory);
+      if (storyRows) setRows(storyRows);
     }
   }, [randomStory]);
 

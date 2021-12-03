@@ -1,17 +1,7 @@
 import { useEffect, useState } from "react";
+import { getRandom } from "../utils";
 import getRandomMeetCute from "./getRandomMeetCute";
 import { Character, Story } from "./StoryTypes";
-
-interface DataMuseData {
-  score: number,
-  tags?: string[],
-  word: string,
-}
-
-const getRandom = (list: any[]): any => {
-  const randomNumber = Math.floor(Math.random() * list.length);
-  return list[randomNumber];
-}
 
 const useSetRandomStory = () => {
   const [story, setStory] = useState<Story|null>(null);
@@ -35,6 +25,7 @@ const useSetRandomStory = () => {
   };
 
   // USE EFFECTS CHAIN REACTION (ON INIT)
+  // TODO (use one effect for everything?)
   useEffect(() => {
     getContestName();
   }, []);
