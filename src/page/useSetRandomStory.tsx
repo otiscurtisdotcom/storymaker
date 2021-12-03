@@ -14,6 +14,7 @@ const useSetRandomStory = () => {
   const [luxury, setLuxury] = useState('');
   const [oldHelper, setOldHelper] = useState('');
   const [cop, setCop] = useState('');
+  const [boss, setBoss] = useState('');
   const [accident, setAccident] = useState('');
   const [heartWarmer, setHeartWarmer] = useState('');
   
@@ -24,65 +25,20 @@ const useSetRandomStory = () => {
     return json;
   };
 
-  // USE EFFECTS CHAIN REACTION (ON INIT)
-  // TODO (use one effect for everything?)
+  // ON INIT
   useEffect(() => {
     getContestName();
+    getLeads();
+    getShop();
+    getLuxury();
+    getCity();
+    getTown();
+    getOldHelper();
+    getCop();
+    getBoss();
+    getAccident();
+    getHeartWarmer();
   }, []);
-
-  useEffect(() => {
-    if (contest) {
-      getLeads();
-    }
-  }, [contest]);
-
-  useEffect(() => {
-    if (leadA && leadB) {
-      getShop();
-    }
-  }, [leadA, leadB]);
-
-  useEffect(() => {
-    if (shop) {
-      getLuxury();
-    }
-  }, [shop]);
-
-  useEffect(() => {
-    if (luxury) {
-      getCity();
-    }
-  }, [luxury]);
-
-  useEffect(() => {
-    if (city) {
-      getTown();
-    }
-  }, [city]);
-
-  useEffect(() => {
-    if (town) {
-      getOldHelper();
-    }
-  }, [town]);
-
-  useEffect(() => {
-    if (oldHelper) {
-      getCop();
-    }
-  }, [oldHelper]);
-
-  useEffect(() => {
-    if (cop) {
-      getAccident();
-    }
-  }, [cop]);
-
-  useEffect(() => {
-    if (accident) {
-      getHeartWarmer();
-    }
-  }, [accident])
 
   useEffect(() => {
     if (leadA && leadB && town && city && contest && oldHelper && accident && heartWarmer) {
@@ -94,6 +50,7 @@ const useSetRandomStory = () => {
         contest,
         oldHelper,
         cop,
+        boss,
         shop,
         luxury,
         accident,
@@ -103,7 +60,7 @@ const useSetRandomStory = () => {
       };
       setStory(randomStory);
     }
-  }, [heartWarmer]);
+  }, [leadA, leadB, town, city, contest, oldHelper, accident, heartWarmer]);
 
 
 
@@ -114,7 +71,7 @@ const useSetRandomStory = () => {
     const isFood = getRandom([1,2]) === 1;
 
     fetchData(`${process.env.PUBLIC_URL}/data/${isFood ? 'food' : 'objects'}.json`)
-    .then((results: any) => {
+    .then((results: {words: string[]}) => {
       const randomContest = getRandom(results.words).word;
       const randomVerb = isFood ? getRandom(['eating', 'cooking']) : getRandom(['making', 'throwing', 'sculpting']);
       setContest(`${randomContest} ${randomVerb} contest`);
@@ -126,11 +83,11 @@ const useSetRandomStory = () => {
     
     // Lead A
     fetchData(`${process.env.PUBLIC_URL}/data/${isLeadAMale ? 'm' : 'f'}-names.json`)
-    .then((namesList: any) => {
+    .then((namesList: {names: string[]}) => {
 
       // Get Industry
       fetchData(`${process.env.PUBLIC_URL}/data/industries.json`)
-      .then((industryList: any) => {
+      .then((industryList: {words: string[]}) => {
         const randomLeadA: Character = {
           name: getRandom(namesList.names).name,
           pronoun1: isLeadAMale ? 'he' : 'she',
@@ -142,7 +99,7 @@ const useSetRandomStory = () => {
   
         // Lead B
         fetchData(`${process.env.PUBLIC_URL}/data/${!isLeadAMale ? 'm' : 'f'}-names.json`)
-        .then((namesListB: any) => {
+        .then((namesListB: {names: string[]}) => {
           const randomLeadB: Character = {
             name: getRandom(namesListB.names).name,
             pronoun1: !isLeadAMale ? 'he' : 'she',
@@ -157,7 +114,7 @@ const useSetRandomStory = () => {
 
   const getShop = () => {
     fetchData(`${process.env.PUBLIC_URL}/data/objects.json`)
-    .then((results: any) => {
+    .then((results: {words: string[]}) => {
       const randomShop = getRandom(results.words).word;
       setShop(`${randomShop} shop`);
     });
@@ -165,7 +122,7 @@ const useSetRandomStory = () => {
 
   const getLuxury = () => {
     fetchData(`${process.env.PUBLIC_URL}/data/luxury.json`)
-    .then((results: any) => {
+    .then((results: {words: string[]}) => {
       const randomLuxury = getRandom(results.words).word;
       setLuxury(`${randomLuxury}`);
     });
@@ -196,10 +153,16 @@ const useSetRandomStory = () => {
   }
 
   const getCop = () => {
-    const isCopMale = getRandom([0,1]) === 0;
-    fetchData(`${process.env.PUBLIC_URL}/data/${isCopMale ? 'm' : 'f'}-names.json`)
+    fetchData(`${process.env.PUBLIC_URL}/data/surnames.json`)
     .then((result: {names: string[]}) => {
-      setCop(getRandom(result.names).name);
+      setCop(`Chief ${getRandom(result.names).name}`);
+    });
+  }
+
+  const getBoss = () => {
+    fetchData(`${process.env.PUBLIC_URL}/data/surnames.json`)
+    .then((result: {names: string[]}) => {
+      setBoss(`Mr. ${getRandom(result.names).name}`);
     });
   }
 
@@ -213,18 +176,17 @@ const useSetRandomStory = () => {
 
   const getHeartWarmer = () => {
     fetchData(`${process.env.PUBLIC_URL}/data/heart-warmer-adj.json`)
-    .then((adjResult: any) => {
+    .then((adjResult: {words: string[]}) => {
       const randomAdj = getRandom(adjResult.words).word;
 
       fetchData(`${process.env.PUBLIC_URL}/data/heart-warmer-nouns.json`)
-      .then((nounResult: any) => {
+      .then((nounResult: {words: string[]}) => {
         const randomNoun = getRandom(nounResult.words).word;
         setHeartWarmer(`${getRandom(['feeds','gives presents to'])} ${randomAdj} ${randomNoun}`);
       });
     });
   }
 
-  // RETURN
   return story;
 }
 

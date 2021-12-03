@@ -10,10 +10,10 @@ const getAct2Array = (story: Story): Act2[] => {
     second_interaction: [],
     start_drive: [
       `${story.leadA.name} goes back to ${story.city},`,
-      `to speak to ${story.leadA.pronoun3} boss at the ${story.leadA.industry} firm.`,
+      `to speak to ${story.boss}, ${story.leadA.pronoun3} boss at the ${story.leadA.industry} firm.`,
     ],
     continue_drive: [
-      `In the spirit of Christmas, the boss agrees to give the money needed,`,
+      `In the spirit of Christmas, ${story.boss} agrees to give the money needed,`,
       `and ${story.leadA.name} returns to ${story.town} to give the good news.`,
     ],
     low_point: [
@@ -36,10 +36,10 @@ const getAct2Array = (story: Story): Act2[] => {
         second_interaction,
         start_drive: [
           `${story.leadA.name} returns to ${story.city},`,
-          `to speak to ${story.leadA.pronoun3} boss at the ${story.leadA.industry} firm.`,
+          `to speak to ${story.boss}, ${story.leadA.pronoun3} boss at the ${story.leadA.industry} firm.`,
         ],
         continue_drive: [
-          `Initially ${story.leadA.name} manages to convince the boss of the charms of ${story.town} and it's ${story.shop}.`,
+          `Initially ${story.leadA.name} manages to convince ${story.boss} of the charms of ${story.town} and it's ${story.shop}.`,
           `But they refuse to give the money needed to save it`,
         ],
         low_point: [
@@ -113,11 +113,11 @@ const getAct2Array = (story: Story): Act2[] => {
         second_interaction,
         start_drive: [
           `${story.leadA.name} returns to ${story.city},`,
-          `to speak to ${story.leadA.pronoun3} boss at the ${story.leadA.industry} firm.`,
+          `to speak to ${story.boss}, ${story.leadA.pronoun3} boss at the ${story.leadA.industry} firm.`,
         ],
         continue_drive: [
-          `${story.leadA.name} tries to convince the boss that buying the ${story.town} ${story.shop} would be a bad investment.`,
-          `The boss disagrees, and says they will demolish the ${story.shop} next week`,
+          `${story.leadA.name} tries to convince ${story.boss} that buying the ${story.town} ${story.shop} would be a bad investment.`,
+          `${story.boss} disagrees, and says they will demolish the ${story.shop} next week`,
         ],
         low_point: [
           `${story.leadA.name} quits on the spot, and returns to ${story.town} empty handed.`
@@ -136,8 +136,8 @@ const getAct2Array = (story: Story): Act2[] => {
           `where they continue to sing and hold banners saving "Save our ${story.shop}.`,
         ],
         low_point: [
-          `But the boss of the ${story.leadA.industry} business is not impressed,`,
-          `tells them that the ${story.shop} is going to be turned into ${story.luxury},`,
+          `But ${story.boss}, the boss of the ${story.leadA.industry} business is not impressed,`,
+          `and tells them that the ${story.shop} is going to be turned into ${story.luxury},`,
           `and there's nothing they can do about it.`,
         ],
       },
@@ -153,8 +153,8 @@ const getAct2Array = (story: Story): Act2[] => {
           `and finds the file in a filing cabinet.`,
         ],
         low_point: [
-          `But just as ${story.leadA.pronoun1} does so, the boss walks in.`,
-          `And says ${story.leadA.name} needs to pack up ${story.leadA.pronoun3} things.`,
+          `But just as ${story.leadA.pronoun1} does so, the boss, ${story.boss}, walks in.`,
+          `He says ${story.leadA.name} needs to pack up ${story.leadA.pronoun3} things.`,
           `${story.leadA.pronoun1}'s fired.`,
         ],
       },

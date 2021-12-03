@@ -8,6 +8,7 @@ export interface Story {
   contest: string;
   oldHelper: string;
   cop: string;
+  boss: string;
   meetCute: string;
   accident: string;
   heartWarmer: string;
