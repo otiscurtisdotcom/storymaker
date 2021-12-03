@@ -67,7 +67,8 @@ const getAct2Array = (story: Story): Act2[] => {
         second_interaction,
         start_drive: [
           `${story.leadA.name} teaches ${story.leadB.name} and ${story.oldHelper} about raising money online.`,
-          `Being such small-town folk, they have never heard of such a thing.`,
+          `Being such small-town folk, they have never heard of such a thing,`,
+          `but ${story.leadA.name} is from ${story.city}, so ${story.leadA.pronoun1} understands how the modern world works.`
         ],
         continue_drive: [
           `He sets up a GoFundMe for them and goes to the press, using his contacts in the ${story.leadA.industry} industry.`,
