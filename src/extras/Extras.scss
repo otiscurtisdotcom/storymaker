@@ -18,13 +18,27 @@ canvas {
   @media screen and (min-width: 860px) {
     display: block;
     height: 300px;
-    left: calc(-9vw - 170px);
     position: absolute;
-    top: calc(100vh - 250px);
     width: 300px;
+
+    &.lead-a {
+      left: calc(-9vw - 170px);
+      top: calc(100vh - 200px);
+    }
+
+    &.lead-b {
+      right: calc(-9vw - 170px);
+      top: calc(200vh - 200px);
+    }
   }
 
   @media screen and (min-width: 1200px) {
-    left: calc(-25vw);
+    &.lead-a {
+      left: calc(-25vw);
+    }
+
+    &.lead-b {
+      right: calc(-25vw);
+    }
   }
 }

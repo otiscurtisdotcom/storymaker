@@ -7,7 +7,8 @@ const Extras = (props: {
 }) => {
   return (
     <div className="sides">
-      <Bauble name={props.story.leadA.name} />
+      <Bauble name={props.story.leadA.name} isLeadA={true} />
+      <Bauble name={props.story.leadB.name} isLeadA={false} />
     </div>
   );
 }

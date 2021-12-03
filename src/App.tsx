@@ -1,7 +1,17 @@
+import { useEffect } from 'react';
 import './App.scss';
 import Page from './page/Page';
+import WebFont from 'webfontloader';
 
 const App = () => {
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ['Comforter Brush', 'Great Vibes']
+      },
+    });
+   }, []);
+
   return (
     <div
       className="page"

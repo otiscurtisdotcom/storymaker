@@ -17,12 +17,17 @@ const bulgeConfig = {
   strength: 0.5
 }
 
-const rotate = `rotate(${Math.random() * 40 - 20}deg)`;
+const rotateA = `rotate(${Math.random() * 40 - 20}deg)`;
+const rotateB = `rotate(${Math.random() * 40 - 20}deg)`;
 const hughes = [0, 180, 230];
-const hugh = getRandom(hughes);
+const hughA = getRandom(hughes);
+const hughB = getRandom(hughes);
+const fontFamilyA = `'Comforter Brush', cursive`;
+const fontFamilyB = `'Great Vibes', cursive`;
 
 const Bauble = (props: {
   name: string | undefined,
+  isLeadA: boolean,
 }) => {
   const width = 600
   const stageProps = {
@@ -35,11 +40,11 @@ const Bauble = (props: {
   }
 
   return (
-    <div className="bauble" style={{transform: rotate}}>
+    <div className={`bauble ${props.isLeadA ? 'lead-a' : 'lead-b'}`} style={{transform: props.isLeadA ? rotateA : rotateB}}>
       <Stage {...stageProps}>
         <ImageFilters
           // @ts-ignore: TS / React / Pixi
-          matrix={{ enabled: true }} apply={ ({ matrix }) => matrix.hue(hugh) }
+          matrix={{ enabled: true }} apply={ ({ matrix }) => matrix.hue(props.isLeadA ? hughA : hughB) }
           >
           <Sprite
             image={`${process.env.PUBLIC_URL}/img/bauble2.png`}
@@ -58,10 +63,9 @@ const Bauble = (props: {
             style={
               new TextStyle({
                 align: 'center',
-                fontFamily: `'Comforter Brush', cursive`,
+                fontFamily: props.isLeadA ? fontFamilyA : fontFamilyB,
                 fontSize: 70,
                 fontWeight: `400`,
-                letterSpacing: 8,
                 fill: ['#BF953F', '#B38728'],
                 padding: 50,
               })
