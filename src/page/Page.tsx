@@ -4,19 +4,43 @@ import Row from "./Row";
 import getStoryRows from "./StoryRows";
 import useSetRandomStory from "./useSetRandomStory";
 
-const Page = () => {
+const Page = (
+  props: {
+    allLoaded: () => void,
+    currentRow: number
+  }
+) => {
   const [rows, setRows] = useState<string[]>([]);
-  const [currentRow, setCurrentRow] = useState(0);
-
-  const nextRow = () => {
-    const newRow = currentRow + 1;
-    setCurrentRow(newRow);
-    setTimeout(() => {
-      window.scrollTo({top: document.body.clientHeight, behavior: 'smooth'});
-    }, 100);
-  };
+  const [imageLoaded, setImageLoaded] = useState<any>();
+  const [imageArray, setImageArray] = useState<string[]>([]);
 
   const randomStory = useSetRandomStory();
+  const images = ['present1', 'present2', 'hotchoc', 'candycane', 'bauble'];
+  
+  useEffect(() => {
+    for (const picture of images) {
+      const img = new Image();
+      img.src = `${process.env.PUBLIC_URL}/img/${picture}.png`;
+      if (img.complete) {
+        setImageLoaded(picture);
+      } else {
+        img.onload = () => {
+          if (picture) {
+            setImageLoaded(picture);
+          }
+        }
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (imageLoaded) {
+      const array = imageArray;
+      array.push(imageLoaded);
+      setImageArray(array);
+      props.allLoaded();
+    }
+  }, [imageLoaded]);
 
   // ON BACKSTORY LOAD
   useEffect(() => {
@@ -31,13 +55,12 @@ const Page = () => {
       <div className="page-wrapper">
         <div>
           {rows.map((text, index) => {
-            if (index <= currentRow) {
+            if (index <= props.currentRow) {
               return <Row key={index}
                           text={text} />
             }
           })}
         </div>
-        <button onClick={nextRow}>Next</button>
         <Extras story={randomStory} />
       </div>
     )

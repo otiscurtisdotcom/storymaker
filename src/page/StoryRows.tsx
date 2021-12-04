@@ -65,7 +65,7 @@ const getStoryRows = (story: Story): string[] | undefined => {
       ...act3.final_push,
       `...`,
 
-      `${story.leadB.name} and ${story.leadA.name} are both ecstatic`,
+      `${story.leadB.name} and ${story.leadA.name} are both ecstatic.`,
       `They realise they are in love, and have been all along.`,
       `They kiss.`,
       `- THE END -`

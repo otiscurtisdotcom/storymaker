@@ -3,6 +3,20 @@
   overflow: hidden;
   position: relative;
   width: 100%;
+
+  .wood {
+    height: calc(100% + 100vh);
+    position: absolute;
+    top: -100vh;
+    transform: translateY(100vh);
+    transition: transform 2s ease-in-out 1s;
+    width: 100%;
+    z-index: -1;
+  }
+
+  &.loaded .wood {
+    transform: translateY(0);
+  }
 }
 
 .wrapper {
@@ -10,7 +24,13 @@
   flex-direction: column;
   margin: 0 auto;
   max-width: 840px;
+  transform: translateY(100vh);
+  transition: transform 2s ease-in-out 1s;
   width: calc(100% - 200px);
+
+  .loaded & {
+    transform: translateY(0);
+  }
 
   .top,
   .content {
