@@ -67,6 +67,14 @@ object-assign
  */
 
 /*!
+ * @pixi/filter-crt - v4.1.5
+ * Compiled Wed, 29 Sep 2021 14:05:57 UTC
+ *
+ * @pixi/filter-crt is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
  * @pixi/math - v6.2.0
  * Compiled Mon, 01 Nov 2021 16:52:10 UTC
  *
