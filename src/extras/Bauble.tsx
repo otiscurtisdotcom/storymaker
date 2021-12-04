@@ -1,4 +1,4 @@
-import { Stage, Text, withFilters, Container, Sprite } from '@inlet/react-pixi'
+import { Stage, Text, withFilters, Container, Sprite } from '@inlet/react-pixi';
 import { TextStyle } from '@pixi/text';
 import { BulgePinchFilter } from '@pixi/filter-bulge-pinch';
 import { ColorMatrixFilter } from '@pixi/filter-color-matrix';

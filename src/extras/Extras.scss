@@ -7,11 +7,6 @@
   width: 100%;
 }
 
-canvas {
-  height: 100% !important;
-  width: 100% !important;
-}
-
 .bauble {
   display: none;
 
@@ -50,6 +45,11 @@ canvas {
     &.lead-b {
       top: 170vh;
     }
+  }
+
+  canvas {
+    height: 100% !important;
+    width: 100% !important;
   }
 }
 
@@ -108,5 +108,20 @@ canvas {
 
   @media screen and (min-height: 900px) {
     top: 60vh;
+  }
+}
+
+.postcard {
+  background-color: #fff;
+  box-shadow: 4px 5px 8px rgba(0, 0, 0, 0.5);
+  bottom: 60px;
+  display: flex;
+  left: 100px;
+  position: absolute;
+  transform: translateY(calc(100vh + 400px));
+  transition: transform 1s ease-in-out 1s;
+
+  &.shown {
+    transform: translateY(calc(100% + 40px)) rotate(3deg);
   }
 }

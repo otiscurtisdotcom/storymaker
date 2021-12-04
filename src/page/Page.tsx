@@ -13,6 +13,7 @@ const Page = (
   const [rows, setRows] = useState<string[]>([]);
   const [imageLoaded, setImageLoaded] = useState<any>();
   const [imageArray, setImageArray] = useState<string[]>([]);
+  const [end, setEnd] = useState(false);
 
   const randomStory = useSetRandomStory();
   const images = ['present1', 'present2', 'hotchoc', 'candycane', 'bauble'];
@@ -50,6 +51,10 @@ const Page = (
     }
   }, [randomStory]);
 
+  useEffect(() => {
+    setEnd(props.currentRow > 0 && props.currentRow >= rows.length);
+  }, [props.currentRow])
+
   if (randomStory) {
     return (
       <div className="page-wrapper">
@@ -61,7 +66,7 @@ const Page = (
             }
           })}
         </div>
-        <Extras story={randomStory} />
+        <Extras story={randomStory} end={end} />
       </div>
     )
   } else {

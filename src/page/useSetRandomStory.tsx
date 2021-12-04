@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getRandom } from "../utils";
+import { fetchData, getRandom } from "../utils";
 import getRandomMeetCute from "./getRandomMeetCute";
 import { Character, Story } from "./StoryTypes";
 
@@ -17,13 +17,6 @@ const useSetRandomStory = () => {
   const [boss, setBoss] = useState('');
   const [accident, setAccident] = useState('');
   const [heartWarmer, setHeartWarmer] = useState('');
-  
-  const fetchData = async (url: string) => {
-    const res = await fetch(url);
-    const json = await res.json();
-
-    return json;
-  };
 
   // ON INIT
   useEffect(() => {
