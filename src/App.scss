@@ -26,7 +26,11 @@
   max-width: 840px;
   transform: translateY(100vh);
   transition: transform 2s ease-in-out 1s;
-  width: calc(100% - 200px);
+  width: 100%;
+
+  @media screen and (min-width:860px) {
+    width: calc(100% - 200px);
+  }
 
   .loaded & {
     transform: translateY(0);
