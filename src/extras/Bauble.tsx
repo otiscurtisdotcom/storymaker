@@ -45,7 +45,7 @@ const Bauble = (props: {
         <ImageFilters
           // @ts-ignore: TS / React / Pixi
           matrix={{ enabled: true }} apply={ ({ matrix }) => matrix.hue(props.isLeadA ? hughA : hughB) }
-          >
+        >
           <Sprite
             image={`${process.env.PUBLIC_URL}/img/bauble.png`}
             anchor={0.5}
