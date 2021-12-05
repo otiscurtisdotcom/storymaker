@@ -114,14 +114,35 @@
 .postcard {
   background-color: #fff;
   box-shadow: 4px 5px 8px rgba(0, 0, 0, 0.5);
-  bottom: 60px;
+  bottom: 0;
   display: flex;
-  left: 100px;
+  left: 50%;
   position: absolute;
   transform: translateY(calc(100vh + 400px));
   transition: transform 1s ease-in-out 1s;
+  width: 100vw;
+
+  @media screen and (min-width:860px) {
+    bottom: 60px;
+    left: 100px;
+    width: auto;
+  }
 
   &.shown {
-    transform: translateY(calc(100% + 40px)) rotate(3deg);
+    transform: translate(-50%, calc(100% + 30px)) rotate(3deg);
+
+    @media screen and (min-width:860px) {      
+      transform: translateY(calc(100% + 40px)) rotate(3deg);
+    }
+  }
+
+  canvas {
+    height: 100% !important;
+    width: 100% !important;
+
+    @media screen and (min-width:860px) {
+      height: 400px !important;
+      width: 600px !important;
+    }
   }
 }
